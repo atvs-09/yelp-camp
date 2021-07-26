@@ -21,6 +21,7 @@ const mongoSanitize = require('express-mongo-sanitize');
 const helmet = require('helmet');
 const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/yelp-camp';
 const MongoStore = require('connect-mongo');
+const favicon = require('express-favicon');
 
 
 const userRoutes = require("./routes/users");
@@ -52,6 +53,7 @@ app.use(mongoSanitize());
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'))
 app.use(express.static("public"));
+app.use(favicon(__dirname + '/public/favicon-32x32.png'));
 
 const secret = process.env.SECRET || "hugesecret";
 
